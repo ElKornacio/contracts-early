@@ -6,6 +6,7 @@
   "author": "Danila Simonov @ElKornacio",
   "license": "MIT",
   "dependencies": {
+    "bignumber.js": "^4.1.0",
     "truffle": "^3.4.11"
   },
   "directories": {
@@ -15,5 +16,8 @@
     "build": "yarn truffle compile",
     "deploy": "yarn truffle migrate",
     "test": "yarn truffle test"
+  },
+  "devDependencies": {
+    "solidity-coverage": "^0.2.5"
   }
 }

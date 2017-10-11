@@ -107,12 +107,12 @@ contract LATokenMinter {
         onlyHelper
         returns (uint)
     {
-        uint currentTimeDiff = now.sub(startTime);
+        uint currentTimeDiff = getBlockTimestamp().sub(startTime);
         uint secondsPerDay = 24 * 3600;
         uint daysFromStart = currentTimeDiff.div(secondsPerDay);
         uint currentDay = daysFromStart.add(1);
 
-        if (now >= endTime) {
+        if (getBlockTimestamp() >= endTime) {
             currentTimeDiff = endTime.sub(startTime).add(1);
             currentDay = 5 * 365;
         }
@@ -121,7 +121,6 @@ contract LATokenMinter {
         uint wasNotHarvested = maxCurrentHarvest.sub(alreadyHarvestedTokens);
 
         require(token.issueTokens(teamPoolForFrozenTokens, wasNotHarvested));
-
         alreadyHarvestedTokens = alreadyHarvestedTokens.add(wasNotHarvested);
 
         return wasNotHarvested;
@@ -146,4 +145,8 @@ contract LATokenMinter {
     function () payable {
         require(false);
     }
+
+    function getBlockTimestamp() returns (uint256) {
+        return block.timestamp;
+      }
 }
