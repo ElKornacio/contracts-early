@@ -36,6 +36,8 @@ contract LATToken is StandardToken {
 
         if (exchanger != 0x0 && _to == exchanger) {
             assert(ExchangeContract(exchanger).exchange(msg.sender, _value));
+            // event call is necessary to udate info, at etherscan, etc.
+            Transfer(msg.sender, _to, _value);
             return true;
         }
 
@@ -76,11 +78,11 @@ contract LATToken is StandardToken {
             return false;
         }
 
-        if (totalSupply.sub(tokenCount) > totalSupply) {
+        if (tokenCount > totalSupply) {
             revert();
         }
 
-        if (balances[_for].sub(tokenCount) > balances[_for]) {
+        if (tokenCount > balances[_for]) {
             revert();
         }
 

@@ -40,22 +40,29 @@ contract StandardToken is Token {
     }
 
     function approve(address _spender, uint256 _value) returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-        return true;
+        if (balances[msg.sender] >= _value && _value > 0) {
+            allowed[msg.sender][_spender] = _value;
+            Approval(msg.sender, _spender, _value);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
+        if (balances[msg.sender] >= _value && _value > 0) {
+            allowed[msg.sender][_spender] = _value;
+            Approval(msg.sender, _spender, _value);
 
-        string memory signature = "receiveApproval(address,uint256,address,bytes)";
+            string memory signature = "receiveApproval(address,uint256,address,bytes)";
 
-        if (!_spender.call(bytes4(bytes32(sha3(signature))), msg.sender, _value, this, _extraData)) {
-            revert();
-        }
-
-        return true;
+            if (!_spender.call(bytes4(bytes32(sha3(signature))), msg.sender, _value, this, _extraData)) {
+                revert();
+            }            
+            return true;
+        else{
+            return false;
+        }    
     }
 
     function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
