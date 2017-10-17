@@ -6,7 +6,7 @@ This audit report was undertaken by BlockchainLabs.nz for the purpose of providi
 Solidity contracts were sourced from the public Github repo [ElKornacio/contracts-early](https://github.com/ElKornacio/contracts-early) prior to commit [199e6a8ce4662f4e3a66e7b689876baea42e665a](https://github.com/ElKornacio/contracts-early/tree/199e6a8ce4662f4e3a66e7b689876baea42e665a) - we would encourage all community members and token holders to make their own assessment of the contracts.
 
 ## Scope
-All Solidity code contained in [/contracts](https://github.com/ElKornacio/contracts-early/tree/master/contracts) was considered in scope along with the tests contained in [/test](https://github.com/ElKornacio/contracts-early/tree/master/test) as a basis for static and dynamic analysis.
+All Solidity code contained in [/contracts](https://github.com/LAToken/smart-contract/tree/master/contracts) was considered in scope along with the tests contained in [/test](https://github.com/LAToken/smart-contract/tree/master/test) as a basis for static and dynamic analysis.
 
 ## Focus Areas
 The audit report is focused on the following key areas - though this is not an exhaustive list.
